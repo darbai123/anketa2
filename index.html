@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>
+      Registracijos forma</h1>
+    <p>
+      Užpildykite šią formą ir nurodykite reikiamą informaciją</p>
+    <form method="post" action="" name="kontaktai">
+      <fieldset>
+        <label for="first-name">Įveskite savo vardą: <input id="first-name" name="first-name" type="text" required /></label>
+        <label for="last-name">Įveskite savo pavardę: <input id="last-name" name="last-name" type="text" required /></label>
+        <label for="email">
+          Įrašykite savo el. paštą: <input id="email" name="email" type="email" required /></label>
+        <label for="new-password">
+          Sukurkite naują slaptažodį: <input id="new-password" name="new-password" type="password" pattern="[a-z0-9]{4,}" required /></label>
+      </fieldset>
+      <fieldset>
+        <legend>
+          Paskyros tipas (būtina)</legend>
+        <label for="personal-account"><input id="personal-account" type="radio" name="account-type" class="inline" checked /> 
+          Asmeninis</label>
+        <label for="business-account"><input id="business-account" type="radio" name="account-type" class="inline" /> 
+          Verslas</label>
+      </fieldset>
+      <fieldset>
+        <label for="profile-picture">
+          Įkelti profilio nuotrauką: <input id="profile-picture" type="file" name="file" /></label>
+        <label for="age">Įveskite savo amžių (metai): <input id="age" type="number" name="age" min="13" max="120" /></label>
+        <label for="referrer">
+          Kaip tu išgirdai apie mus?
+          <select id="referrer" name="referrer">
+            <option value="">
+              (Pasirinkti vieną)</option>
+            <option value="1">Mūsų naujienos</option>
+            <option value="2">Mūsų YouTube kanalas</option>
+            <option value="3">Mūsų forumas</option>
+            <option value="4">Kita</option>
+          </select>
+        </label>
+        <label for="bio">
+          Pateikite biografiją:
+          <textarea id="bio" name="bio" rows="3" cols="30" placeholder="Aš mėgstu..."></textarea>
+        </label>
+      </fieldset>
+
+<label for="terms-and-conditions">
+    <input class="inline" id="terms-and-conditions"  type="checkbox" required name="terms-and-conditions" /> Sutinku su <a  href="salygos.html" style="color: rgb(135, 233, 135);"> taisyklėmis ir sąlygomis</a> <span style="font-size: 12px;"> (skaityti)</span>
+  </label>
+  <!-- <input type="submit" value="Patvirtinti" /> -->
+  <button type="submit" class="inputt">
+   Patvirtinti
+</button>
+   <span id="msg">
+                      
+</span>
+    </form>
+    
+      <div class="language language__position">
+        <button class="language__button"> <a href="index.html" class="language__color">Lietuviška versija</a> </button>
+        <button class="language__button"> <a href="en.html" class="language__color">English version</a> </button>
+        <button class="language__button"> <a href="ru.html" class="language__color">Русская версия</a> </button>
+      </div>
+
+      <footer class="footer">
+        <div class="footer__bg">
+            <div class="footer__container container grid">
+                <div>
+                    <h1 class="footer__title"><img src="img/logo8.png" class="footer__logo"> <p>Frontend developer</p> </h1>
+                   
+                                         
+                </div>
+              
+            </div>
+           
+            <p class="footer__copy">&#169; 2024 Aurimas. Visos teisės saugomos</p>
+        </div>
+        <a href="https://darbai123.github.io/myHomePage/" class="buttonn"><i class="fa-regular fa-arrow button__icon"></i>
+          Grįžti atgal 
+      </a>
+    </footer>
+
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxJQdeaPfT9aaR6o2b8IiGdSraynkC7c_ia0UOFvetrhdDG4pqeGDquHFdXkfsf4f1M0w/exec'
+        const form = document.forms['kontaktai']
+        const msg = document.getElementById("msg")
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Duomenys patvirtinti"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+                
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+  </body>
+</html>

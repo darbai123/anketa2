@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <p>Please fill out this form with the required information</p>
+    <form method="post" action="" name="kontaktai">
+      <fieldset>
+        <label for="first-name">Enter Your First Name: <input id="first-name" name="first-name" type="text" required /></label>
+        <label for="last-name">Enter Your Last Name: <input id="last-name" name="last-name" type="text" required /></label>
+        <label for="email">Enter Your Email: <input id="email" name="email" type="email" required /></label>
+        <label for="new-password">Create a New Password: <input id="new-password" name="new-password" type="password" pattern="[a-z0-5]{8,}" required /></label>
+      </fieldset>
+      <fieldset>
+        <legend>Account type (required)</legend>
+        <label for="personal-account"><input id="personal-account" type="radio" name="account-type" class="inline" checked /> Personal</label>
+        <label for="business-account"><input id="business-account" type="radio" name="account-type" class="inline" /> Business</label>
+      </fieldset>
+      <fieldset>
+        <label for="profile-picture">Upload a profile picture: <input id="profile-picture" type="file" name="file" /></label>
+        <label for="age">Input your age (years): <input id="age" type="number" name="age" min="13" max="120" /></label>
+        <label for="referrer">How did you hear about us?
+          <select id="referrer" name="referrer">
+            <option value="">(select one)</option>
+            <option value="1">Our News</option>
+            <option value="2">Our YouTube Channel</option>
+            <option value="3">Our Forum</option>
+            <option value="4">Other</option>
+          </select>
+        </label>
+        <label for="bio">Provide a bio:
+          <textarea id="bio" name="bio" rows="3" cols="30" placeholder="I like..."></textarea>
+        </label>
+      </fieldset>
+
+      <label for="terms-and-conditions">
+        <input class="inline" id="terms-and-conditions"  type="checkbox" required name="terms-and-conditions" /> I accept the <a  href="terms.html" style="color: rgb(135, 233, 135);">terms and conditions</a> <span style="font-size: 12px;"> (read)</span>
+      </label>
+      <button type="submit" class="inputt">
+        Submit
+     </button>
+        <span id="msg">
+                           
+     </span>
+    </form>
+    <div class="language language__position">
+        <button class="language__button"> <a href="en.html" class="language__color">English version</a> </button>
+        <button class="language__button"> <a href="index.html" class="language__color">Lietuviška versija</a> </button>
+        <button class="language__button"> <a href="ru.html" class="language__color">Русская версия</a> </button>
+      </div>
+
+      <footer class="footer">
+        <div class="footer__bg">
+            <div class="footer__container container grid">
+                <div>
+                    <h1 class="footer__title"><img src="img/logo8.png" class="footer__logo"> <p>Frontend developer</p> </h1>
+                   
+                                         
+                </div>
+              
+            </div>
+           
+            <p class="footer__copy">&#169; 2024 Aurimas. All rights reserved</p>
+        </div>
+        <a href="https://darbai123.github.io/myHomePage/" class="buttonn"><i class="fa-regular fa-arrow button__icon"></i>
+          Back
+      </a>
+    </footer>
+
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxJQdeaPfT9aaR6o2b8IiGdSraynkC7c_ia0UOFvetrhdDG4pqeGDquHFdXkfsf4f1M0w/exec'
+        const form = document.forms['kontaktai']
+        const msg = document.getElementById("msg")
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Data comfirmed"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+                
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+  </body>
+</html>

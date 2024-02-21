@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Форма регистрации</h1>
+    <p>
+        Пожалуйста, заполните эту форму, указав необходимую информацию</p>
+        <form method="post" action="" name="kontaktai">
+      <fieldset>
+        <label for="first-name">Введите свое имя: <input id="first-name" name="first-name" type="text" required /></label>
+        <label for="last-name">Введите свою фамилию: <input id="last-name" name="last-name" type="text" required /></label>
+        <label for="email">
+            Введите адрес электронной почты: <input id="email" name="email" type="email" required /></label>
+        <label for="new-password">
+            Создайте новый пароль: <input id="new-password" name="new-password" type="password" pattern="[a-z0-5]{8,}" required /></label>
+      </fieldset>
+      <fieldset>
+        <legend>
+            Тип аккаунта (обязательно)</legend>
+        <label for="personal-account"><input id="personal-account" type="radio" name="account-type" class="inline" checked /> Персональный</label>
+        <label for="business-account"><input id="business-account" type="radio" name="account-type" class="inline" /> 
+            Бизнес</label>
+      </fieldset>
+      <fieldset>
+        <label for="profile-picture">Загрузите изображение профиля: <input id="profile-picture" type="file" name="file" /></label>
+        <label for="age">Введите свой возраст (лет): <input id="age" type="number" name="age" min="13" max="120" /></label>
+        <label for="referrer">
+            Как вы узнали о нас?
+          <select id="referrer" name="referrer">
+            <option value="">(Выбери один)</option>
+            <option value="1">Наши новости</option>
+            <option value="2">Наш канал на YouTube</option>
+            <option value="3">Наш форум</option>
+            <option value="4">
+                Другой</option>
+          </select>
+        </label>
+        <label for="bio">
+            Предоставьте биографию:
+          <textarea id="bio" name="bio" rows="3" cols="30" placeholder="Мне нравится..."></textarea>
+        </label>
+      </fieldset>
+
+      <label for="terms-and-conditions">
+        <input class="inline" id="terms-and-conditions"  type="checkbox" required name="terms-and-conditions" /> я принимаю <a  href="ruterms.html" style="color: rgb(135, 233, 135);">условия и положения</a> <span style="font-size: 12px;"> (читать)</span>
+      </label>
+  
+  <button type="submit" class="inputt">
+    подтверждать
+ </button>
+    <span id="msg">
+                       
+ </span>
+    </form>
+    <div class="language language__position">
+        <button class="language__button"> <a href="ru.html" class="language__color">Русская версия</a> </button>
+        <button class="language__button"> <a href="en.html" class="language__color">English version</a> </button>
+        <button class="language__button"> <a href="index.html" class="language__color">Lietuviška versija</a> </button>
+      </div>
+
+
+      <footer class="footer">
+        <div class="footer__bg">
+            <div class="footer__container container grid">
+                <div>
+                    <h1 class="footer__title"><img src="img/logo8.png" class="footer__logo"> <p>Frontend developer</p> </h1>
+                   
+                                         
+                </div>
+              
+            </div>
+           
+            <p class="footer__copy">&#169; 2024 Ауримас. все права защищены</p>
+        </div>
+        <a href="https://darbai123.github.io/myHomePage/" class="buttonn"><i class="fa-regular fa-arrow button__icon"></i>
+          
+назад
+      </a>
+    </footer>
+
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxJQdeaPfT9aaR6o2b8IiGdSraynkC7c_ia0UOFvetrhdDG4pqeGDquHFdXkfsf4f1M0w/exec'
+        const form = document.forms['kontaktai']
+        const msg = document.getElementById("msg")
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "данные подтверждены"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+                
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+  </body>
+</html>
